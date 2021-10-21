@@ -1,7 +1,7 @@
 CREATE TABLE event (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    eventDate DATE NOT NULL,
-    createdDate DATE DEFAULT CURRENT_DATE,
-    updatedDate DATE
+    event_date DATE NOT NULL,
+    created_date DATE DEFAULT CURRENT_DATE,
+    updated_date DATE
 )

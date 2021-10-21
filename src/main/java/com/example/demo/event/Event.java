@@ -1,10 +1,10 @@
 package com.example.demo.event;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public record Event (Integer id,
                      String name,
-                     LocalDate date, LocalDate eventDate,
-                     LocalDate createdDate,
-                     LocalDate updatedDate){
+                     Date event_date,
+                     Date created_date,
+                     Date updated_date){
 }

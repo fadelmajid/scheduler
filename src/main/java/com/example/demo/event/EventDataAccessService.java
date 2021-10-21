@@ -19,7 +19,7 @@ public class EventDataAccessService implements EventDAO {
     @Override
     public List<Event> selectEvent() {
         var sql = """
-                SELECT * FROM event LIMIT 100;
+                SELECT e.id, e.name, e.event_date, e.created_date, e.updated_date FROM event e LIMIT 100;
                 """;
         return jdbcTemplate.query(sql, new EventRowMapper());
     }
@@ -27,16 +27,16 @@ public class EventDataAccessService implements EventDAO {
     @Override
     public int insertEvent(Event event) {
         var sql = """
-                INSERT INTO event(name, eventDate) 
+                INSERT INTO event(name, event_date) 
                 VALUES (?, ?);
                 """;
-        return jdbcTemplate.update(sql, event.name(), event.eventDate());
+        return jdbcTemplate.update(sql, event.name(), event.event_date());
     }
 
     @Override
     public int deleteEvent(int id) {
         var sql = """
-                DELETE FROM movie
+                DELETE FROM event
                 WHERE id = ?
                 """;
         return jdbcTemplate.update(sql, id);
@@ -46,7 +46,7 @@ public class EventDataAccessService implements EventDAO {
     @Override
     public Optional<Event> selectEventById(int id) {
         var sql = """
-                SELECT id, name, eventDate
+                SELECT id, name, event_date
                 FROM event
                 WHERE id = ?
                  """;
@@ -60,12 +60,12 @@ public class EventDataAccessService implements EventDAO {
     public int updateEvent(Event event) {
         var sql = """
                 UPDATE event
-                SET name = ?, eventDate = ?, updatedDate = ?
+                SET name = ?, event_date = ?, updated_date = ?
                 WHERE id = ?
                 """;
         return jdbcTemplate.update(sql,
                 event.name(),
-                event.eventDate(),
+                event.event_date(),
                 LocalDate.now(),
                 event.id());
     }
